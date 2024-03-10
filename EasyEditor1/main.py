@@ -1,6 +1,7 @@
 from PyQt6.QtWidgets import QApplication, QMainWindow, QFileDialog
 from ui import Ui_MainWindow
 import os
+from imageprocesor import ImageProccesor
 
 app = QApplication([])
 win = QMainWindow()
@@ -9,6 +10,7 @@ ui = Ui_MainWindow()
 ui.setupUi(win)
 #-----------------------------
 workdir = ""
+img_proc = ImageProccesor(ui)
 
 def chooseWorkDir():
     global workdir
@@ -37,6 +39,14 @@ def showFilenamesList():
     ui.files_list.addItems(filenames)
 ui.dir_btn.clicked.connect(showFilenamesList)
 
+def showChossenImage():
+    if ui.files_list.currentItem():
+        filename = ui.files_list.currentItem().text()
+        img_proc.open(workdir, filename)
+        img_proc.show()
+
+
+ui.files_list.currentItemChanged.connect(showChossenImage)
 #-------------------------------
 win.show()
 app.exec()
