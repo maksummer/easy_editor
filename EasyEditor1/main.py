@@ -47,6 +47,15 @@ def showChossenImage():
 
 
 ui.files_list.currentItemChanged.connect(showChossenImage)
+
+
+ui.pushButton.clicked.connect(img_proc.do_bw)
+ui.left_btn.clicked.connect(img_proc.do_left)
+ui.right_btn.clicked.connect(img_proc.do_right)
+ui.sharp_btn.clicked.connect(img_proc.do_sharp)
+ui.mirror_btn.clicked.connect(img_proc.do_mirror)
+
+
 #-------------------------------
 win.show()
 app.exec()
